@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import useKeyDown from '../../hooks/useKeyDown';
+
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 export const ToastContext = React.createContext();
@@ -25,6 +27,10 @@ function ToastProvider({ children }) {
     setMessageText('');
     setVariant(VARIANT_OPTIONS[0]);
   };
+  const handleDismissToastAtOnce = () => setToastStack([]);
+
+
+  useKeyDown('Escape', handleDismissToastAtOnce);
 
   return (
     <ToastContext.Provider
@@ -32,6 +38,7 @@ function ToastProvider({ children }) {
         variant,
         messageText,
         toastStack,
+        setToastStack,
         handleDismissToast,
         handleMessageText,
         handleRadio,

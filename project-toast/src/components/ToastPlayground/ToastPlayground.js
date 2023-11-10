@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import Button from '../Button';
 
@@ -10,33 +10,12 @@ import { ToastContext } from '../ToastProvider';
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
-  // const [messageText, setMessageText] = useState('');
-  // const [variant, setVariant] = useState(VARIANT_OPTIONS[0]);
-  // const [toastStack, setToastStack] = useState([]);
   const {
     variant,
     messageText,
     handleMessageText,
     handleRadio,
     handlePopToast } = useContext(ToastContext);
-  // const handleMessageText = (event) => {
-  //   setMessageText(event.target.value);
-  // };
-  // const handleRadio = (event) => {
-  //   setVariant(event.target.value);
-  // }
-  // const handleDismissToast = (id) => {
-  //   const newToastStack = toastStack.filter(toast => toast.id !== id);
-  //   setToastStack(newToastStack);
-  // }
-  // const handlePopToast = (event) => {
-  //   event.preventDefault()
-  //   if (!messageText) return;
-
-  //   setToastStack([...toastStack, { message: messageText, variant, id: crypto.randomUUID() }]);
-  //   setMessageText('');
-  //   setVariant(VARIANT_OPTIONS[0]);
-  // };
 
   return (
     <div className={styles.wrapper}>
@@ -44,7 +23,6 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
-      {/* <ToastShelf toastStack={toastStack} handleDismissToast={handleDismissToast} /> */}
       <ToastShelf />
 
       <form className={styles.controlsWrapper} onSubmit={handlePopToast}>
